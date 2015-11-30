@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import org.apache.commons.logging.Log;
 import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
 
@@ -18,13 +19,12 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.io.IOException;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Created by Jaeger
  * 15/11/25
  */
-public class AutoFindViewAction extends AnAction {
+public class FindViewByMeAction extends AnAction {
     private boolean isAddRootView;
     private boolean isViewHolder;
 
@@ -35,14 +35,33 @@ public class AutoFindViewAction extends AnAction {
     private DefaultTableModel tableModel;
 
     /**
-     * 获取ViewList
+     * 启动时触发
+     */
+    @Override
+    public void actionPerformed(AnActionEvent anActionEvent) {
+        isAddRootView = false;
+        isViewHolder = false;
+        viewSaxHandler = new ViewSaxHandler();
+        if (findViewDialog == null) {
+            findViewDialog = new FindViewDialog();
+        }
+        getViewList(anActionEvent);
+        updateTable();
+        findViewDialog.setTitle("FindViewByMe");
+        findViewDialog.setOnClickListener(onClickListener);
+        findViewDialog.pack();
+        findViewDialog.setLocationRelativeTo(WindowManager.getInstance().getFrame(anActionEvent.getProject()));
+        findViewDialog.setVisible(true);
+    }
+
+    /**
+     * 获取View列表
      *
      * @param event 触发事件
      */
     private void getViewList(AnActionEvent event) {
         PsiFile psiFile = event.getData(LangDataKeys.PSI_FILE);
         Editor editor = event.getData(PlatformDataKeys.EDITOR);
-
         if (psiFile == null || editor == null) {
             return;
         }
@@ -60,23 +79,9 @@ public class AutoFindViewAction extends AnAction {
     }
 
 
-    @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-        isAddRootView = false;
-        isViewHolder = false;
-        viewSaxHandler = new ViewSaxHandler();
-        findViewDialog = new FindViewDialog();
-
-        getViewList(anActionEvent);
-        updateTable();
-        findViewDialog.setTitle("FindViewByMe");
-        findViewDialog.setOnClickListener(onClickListener);
-        findViewDialog.setLocationRelativeTo(null);
-//        findViewDialog.setLocationRelativeTo(WindowManager.getInstance().getFrame(anActionEvent.getProject()));
-        findViewDialog.pack();
-        findViewDialog.setVisible(true);
-    }
-
+    /**
+     * FindViewByMe 对话框回调
+     */
     private FindViewDialog.onClickListener onClickListener = new FindViewDialog.onClickListener() {
         @Override
         public void onAddRootView() {
@@ -88,7 +93,6 @@ public class AutoFindViewAction extends AnAction {
             Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
             Transferable tText = new StringSelection(findViewDialog.textCode.getText());
             clip.setContents(tText, null);
-
         }
 
         @Override
@@ -133,6 +137,11 @@ public class AutoFindViewAction extends AnAction {
         }
     };
 
+    /**
+     * 切换控件名称
+     *
+     * @param isAddM 是否添加"m"
+     */
     private void switchViewName(boolean isAddM) {
         if (isAddM) {
             for (ViewPart viewPart : viewParts) {
@@ -146,6 +155,9 @@ public class AutoFindViewAction extends AnAction {
         updateTable();
     }
 
+    /**
+     * 生成FindViewById代码
+     */
     private void generateCode() {
         StringBuilder stringBuilder = new StringBuilder();
         for (ViewPart viewPart : viewParts) {
@@ -168,6 +180,9 @@ public class AutoFindViewAction extends AnAction {
         findViewDialog.setTextCode(stringBuilder.toString());
     }
 
+    /**
+     * 更新 View 表格
+     */
     public void updateTable() {
         if (viewParts == null || viewParts.size() == 0) {
             return;
@@ -216,12 +231,12 @@ public class AutoFindViewAction extends AnAction {
                 if (column == 0) {
                     Boolean isSelected = (Boolean) tableModel.getValueAt(row, column);
                     viewSaxHandler.getViewPartList().get(row).setSelected(isSelected);
-                    AutoFindViewAction.this.generateCode();
+                    FindViewByMeAction.this.generateCode();
                 }
             }
         });
-
         findViewDialog.setModel(tableModel);
         generateCode();
     }
+
 }
