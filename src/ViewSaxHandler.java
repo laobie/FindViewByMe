@@ -1,3 +1,8 @@
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -5,9 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
 
 public class ViewSaxHandler extends DefaultHandler {
     private List<ViewPart> viewPartList;
+    private String layoutPath = "";
+    private Project project;
 
     public static void main(String[] args) {
         String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -53,19 +58,45 @@ public class ViewSaxHandler extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        viewPartList = new ArrayList<ViewPart>();
+        if (viewPartList == null) {
+            viewPartList = new ArrayList<ViewPart>();
+        }
     }
 
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        ViewPart viewPart = new ViewPart();
-        viewPart.setType(qName);
-        String id = attributes.getValue("android:id");
-        if (id != null) {
-            viewPart.setId(id.replace("@+id/", ""));
-            viewPartList.add(viewPart);
+        if (qName.equals("include")) {
+            String includeLayout = attributes.getValue("layout");
+            if (includeLayout != null) {
+                File file = new File(getLayoutPath(), includeLayout.replace("@layout", "") + ".xml");
+                if (file.exists()) {
+                    VirtualFile virtualFile = LocalFileSystem.getInstance().findFileByIoFile(file);
+                    if (virtualFile == null) {
+                        return;
+                    }
+                    PsiFile psiFile = PsiManager.getInstance(getProject()).findFile(virtualFile);
+                    try {
+                        if (psiFile != null) {
+                            this.createViewList(psiFile.getText());
+                        }
+                    } catch (ParserConfigurationException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            String id = attributes.getValue("android:id");
+            if (id != null) {
+                ViewPart viewPart = new ViewPart();
+                viewPart.setType(qName);
+                viewPart.setId(id.replace("@+id/", ""));
+                viewPartList.add(viewPart);
+            }
         }
+
     }
 
     @Override
@@ -81,7 +112,19 @@ public class ViewSaxHandler extends DefaultHandler {
         return viewPartList;
     }
 
-    public void setViewPartList(List<ViewPart> viewPartList) {
-        this.viewPartList = viewPartList;
+    public String getLayoutPath() {
+        return layoutPath;
+    }
+
+    public void setLayoutPath(String layoutPath) {
+        this.layoutPath = layoutPath;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

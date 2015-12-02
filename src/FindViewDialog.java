@@ -33,7 +33,7 @@ public class FindViewDialog extends JDialog {
                 if (onClickListener != null) {
                     onClickListener.onCopyCode();
                 }
-                FindViewDialog.this.dispose();
+                onCancel();
             }
         });
 
@@ -127,15 +127,10 @@ public class FindViewDialog extends JDialog {
 
     private void onCancel() {
         dispose();
+        if (onClickListener!=null){
+            onClickListener.onFinish();
+        }
     }
-
-//    public static void main(String[] args) {
-//        FindViewDialog dialog = new FindViewDialog();
-//        dialog.setTitle("AutoFindView");
-//        dialog.pack();
-//        dialog.setVisible(true);
-//        System.exit(0);
-//    }
 
     public void setTextCode(String codeStr) {
         textCode.setText(codeStr);
@@ -157,6 +152,8 @@ public class FindViewDialog extends JDialog {
         void onSwitchAddM(boolean addM);
 
         void onSwitchIsViewHolder(boolean isViewHolder);
+
+        void onFinish();
     }
 
     public void setOnClickListener(FindViewDialog.onClickListener onClickListener) {

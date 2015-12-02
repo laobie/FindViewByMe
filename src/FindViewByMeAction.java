@@ -3,8 +3,12 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.newvfs.NewVirtualFile;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import org.apache.commons.logging.Log;
 import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
@@ -17,6 +21,7 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -66,6 +71,10 @@ public class FindViewByMeAction extends AnAction {
             return;
         }
         String contentStr = psiFile.getText();
+        if (psiFile.getParent() != null) {
+            viewSaxHandler.setLayoutPath(psiFile.getContainingDirectory().toString().replace("PsiDirectory:", ""));
+            viewSaxHandler.setProject(event.getProject());
+        }
         try {
             viewSaxHandler.createViewList(contentStr);
             viewParts = viewSaxHandler.getViewPartList();
@@ -109,7 +118,6 @@ public class FindViewByMeAction extends AnAction {
                 viewPart.setSelected(false);
             }
             updateTable();
-
         }
 
         @Override
@@ -134,6 +142,13 @@ public class FindViewByMeAction extends AnAction {
         public void onSwitchIsViewHolder(boolean viewHolder) {
             isViewHolder = viewHolder;
             generateCode();
+        }
+
+        @Override
+        public void onFinish() {
+            viewParts = null;
+            viewSaxHandler = null;
+            findViewDialog = null;
         }
     };
 
