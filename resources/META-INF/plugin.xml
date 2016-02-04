@@ -31,6 +31,18 @@
         <!-- Add your extensions here -->
     </extensions>
 
+    <application-components>
+
+        <!-- Add your application components here -->
+
+        <component>
+
+            <implementation-class>ConfigComponent</implementation-class>
+
+        </component>
+
+    </application-components>
+
     <actions>
         <action id="AutoFindView" class="FindViewByMeAction" text="_Find View By Me">
             <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
