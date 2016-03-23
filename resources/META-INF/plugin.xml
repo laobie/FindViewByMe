@@ -1,5 +1,5 @@
 <idea-plugin version="2">
-    <id>com.your.company.unique.plugin.id</id>
+    <id>com.jaeger.findviewbyme</id>
     <name>FindViewByMe</name>
     <version>1.2</version>
     <vendor email="chjie.jaeger@gmail.com" url="http://laobie.github.io">Jaeger</vendor>
