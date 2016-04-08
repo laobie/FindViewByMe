@@ -11,7 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+// import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class ViewSaxHandler extends DefaultHandler {
                 "\n";
 
         ViewSaxHandler handler = new ViewSaxHandler();
-        InputStream stream = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
+        InputStream stream = new ByteArrayInputStream(str.getBytes("UTF-8));
         try {
             handler.createViewList(stream);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class ViewSaxHandler extends DefaultHandler {
     }
 
     public void createViewList(String string) throws ParserConfigurationException, SAXException, IOException {
-        InputStream xmlStream = new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
+        InputStream xmlStream = new ByteArrayInputStream(string.getBytes("UTF-8"));
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         parser.parse(xmlStream, this);
