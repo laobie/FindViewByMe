@@ -36,16 +36,29 @@ public class ViewSaxHandler extends DefaultHandler {
                 "\n";
 
         ViewSaxHandler handler = new ViewSaxHandler();
-        InputStream stream = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        try {
-            handler.createViewList(stream);
-        } catch (Exception e) {
+        // InputStream stream = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
+        // try {
+        //     handler.createViewList(stream);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+         try {
+            handler.createViewList(str);
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<ViewPart> viewParts = handler.getViewPartList();
+        for (ViewPart viewPart:viewParts){
+            System.out.println(viewPart.toString());
         }
     }
 
     public void createViewList(String string) throws ParserConfigurationException, SAXException, IOException {
-        InputStream xmlStream = new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
+        InputStream xmlStream = new ByteArrayInputStream(string.getBytes("UTF-8"));
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         parser.parse(xmlStream, this);
