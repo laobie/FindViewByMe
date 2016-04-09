@@ -115,5 +115,14 @@ public class ViewPart {
     public String getFindViewStringForViewHolder(String rootView) {
         return String.format(OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER, name, type, rootView, id);
     }
+     @Override
+    public String toString() {
+        return "ViewPart{" +
+                "type='" + type + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", selected=" + selected +
+                '}';
+    }
 }
 
