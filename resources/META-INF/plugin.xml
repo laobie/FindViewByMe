@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.jaeger.findviewbyme</id>
     <name>FindViewByMe</name>
-    <version>1.2</version>
+    <version>1.2.1</version>
     <vendor email="chjie.jaeger@gmail.com" url="http://laobie.github.io">Jaeger</vendor>
 
     <description><![CDATA[
@@ -14,6 +14,8 @@
      <li>2. support generate "findViewById" code for fragment, and you can customize root view name.</li>
      <li>3. support generate "findViewById" code for ViewHolder.</li>
      <li>3. support add "m" for view variable name.</li>
+     <li>4. bug fix.</li>
+
      <br>
     ]]>
     </change-notes>
