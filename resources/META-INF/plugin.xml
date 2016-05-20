@@ -1,14 +1,14 @@
 <idea-plugin version="2">
-    <id>com.jaeger.findviewbyme</id>
-    <name>FindViewByMe</name>
-    <version>1.2.2</version>
-    <vendor email="chjie.jaeger@gmail.com" url="http://laobie.github.io">Jaeger</vendor>
+  <id>com.jaeger.findviewbyme</id>
+  <name>FindViewByMe</name>
+  <version>1.2.2</version>
+  <vendor email="chjie.jaeger@gmail.com" url="http://laobie.github.io">Jaeger</vendor>
 
-    <description><![CDATA[
+  <description><![CDATA[
         A plugin for android developer, with the plugin you can generate "findViewById" code quickly.<br>
     ]]></description>
 
-    <change-notes><![CDATA[
+  <change-notes><![CDATA[
      <li>0. support "include" layout.</li>
      <li>1. support generate "findViewById" code for activity.</li>
      <li>2. support generate "findViewById" code for fragment, and you can customize root view name.</li>
@@ -19,25 +19,25 @@
 
      <br>
     ]]>
-    </change-notes>
+  </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="93.13"/>
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="93.13"/>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
 
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
 
-    <actions>
-        <action id="AutoFindView" class="FindViewByMeAction" text="_Find View By Me">
-            <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
-        </action>
-    </actions>
+  <actions>
+    <action id="AutoFindView" class="FindViewByMeAction" text="_Find View By Me">
+      <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
+    </action>
+  </actions>
 </idea-plugin>
