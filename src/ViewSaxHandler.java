@@ -28,7 +28,12 @@ public class ViewSaxHandler extends DefaultHandler {
                 "              android:layout_width=\"fill_parent\"\n" +
                 "              android:layout_height=\"fill_parent\">\n" +
                 "    <TextView\n" +
-                "            android:id=\"@+id/tv_hello_world\"\n" +
+                "            android:id=\"@id/hello_world\"\n" +
+                "            android:layout_width=\"fill_parent\"\n" +
+                "            android:layout_height=\"wrap_content\"\n" +
+                "            android:text=\"Hello World, MyActivity\"/>\n" +
+                "    <TextView\n" +
+                "            android:id=\"@+id/hello_world_plus\"\n" +
                 "            android:layout_width=\"fill_parent\"\n" +
                 "            android:layout_height=\"wrap_content\"\n" +
                 "            android:text=\"Hello World, MyActivity\"/>\n" +
@@ -105,7 +110,7 @@ public class ViewSaxHandler extends DefaultHandler {
             if (id != null) {
                 ViewPart viewPart = new ViewPart();
                 viewPart.setType(qName);
-                viewPart.setId(id.replace("@+id/", ""));
+                viewPart.setId(id.replace("@+id/", "").replace("@id/", ""));
                 viewPartList.add(viewPart);
             }
         }
