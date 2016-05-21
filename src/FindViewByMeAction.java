@@ -1,20 +1,11 @@
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.newvfs.NewVirtualFile;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.util.PsiUtilBase;
-import org.apache.commons.logging.Log;
 import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
 
@@ -22,11 +13,6 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.ParserConfigurationException;
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
