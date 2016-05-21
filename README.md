@@ -1,6 +1,7 @@
 ## FindViewByMe
 
 A plugin for android developer, with the plugin you can generate "findViewById" code quickly.
+<img src="./screenshot/image_1.gif"/>
  
 ### Download
 [JetBrains Plugin Repository :: FindViewByMe](https://plugins.jetbrains.com/plugin/8261)
