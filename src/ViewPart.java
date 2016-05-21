@@ -13,7 +13,6 @@ public class ViewPart {
     private static final String OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW = "%s = (%s) %s.findViewById(R.id.%s);\n";
     private static final String OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER = "viewHolder.%s = (%s) %s.findViewById(R.id.%s);\n";
     private String type;
-    private String typeFull;
     private String id;
     private String name;
     private boolean selected;
@@ -51,18 +50,12 @@ public class ViewPart {
     }
 
     public void setType(String type) {
-        String[] packages = type.split("\\.");
-        if (packages.length > 1) {
-            this.typeFull = type;
-            this.type = packages[packages.length - 1];
+        if (type.contains(".")) {
+            String[] strings = type.split("\\.");
+            this.type = strings[strings.length - 1];
         } else {
-            this.typeFull = null;
             this.type = type;
         }
-    }
-
-    public String getTypeFull() {
-        return typeFull;
     }
 
     public String getId() {
@@ -95,15 +88,7 @@ public class ViewPart {
         if (isViewHolder) {
             return String.format(OUTPUT_DECLARE_STRING_NOT_PRIVATE, type, name);
         } else {
-            String realType;
-            if (!Utils.isEmptyString(getTypeFull())) {
-                realType = getTypeFull();
-            } else if (Definitions.paths.containsKey(getType())) {
-                realType = Definitions.paths.get(getType());
-            } else {
-                realType = "android.widget." + getType();
-            }
-            return String.format(OUTPUT_DECLARE_STRING, realType, name);
+            return String.format(OUTPUT_DECLARE_STRING, type, name);
         }
     }
 
@@ -130,8 +115,7 @@ public class ViewPart {
     public String getFindViewStringForViewHolder(String rootView) {
         return String.format(OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER, name, type, rootView, id);
     }
-
-    @Override
+     @Override
     public String toString() {
         return "ViewPart{" +
                 "type='" + type + '\'' +

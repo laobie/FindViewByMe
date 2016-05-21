@@ -1,19 +1,14 @@
-import com.intellij.codeInsight.CodeInsightActionHandler;
-import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.newvfs.NewVirtualFile;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
-import com.intellij.psi.util.PsiUtilBase;
 import org.apache.commons.logging.Log;
 import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
@@ -34,7 +29,7 @@ import java.util.List;
  * Created by Jaeger
  * 15/11/25
  */
-public class FindViewByMeAction extends BaseGenerateAction {
+public class FindViewByMeAction extends AnAction {
     private boolean isAddRootView;
     private boolean isViewHolder;
 
@@ -43,17 +38,6 @@ public class FindViewByMeAction extends BaseGenerateAction {
     private List<ViewPart> viewParts;
 
     private DefaultTableModel tableModel;
-
-    private PsiFile psiFile;
-    private Editor editor;
-
-    public FindViewByMeAction() {
-        super(null);
-    }
-
-    public FindViewByMeAction(CodeInsightActionHandler handler) {
-        super(handler);
-    }
 
     /**
      * 启动时触发
@@ -81,17 +65,12 @@ public class FindViewByMeAction extends BaseGenerateAction {
      * @param event 触发事件
      */
     private void getViewList(AnActionEvent event) {
-        psiFile = event.getData(LangDataKeys.PSI_FILE);
-        editor = event.getData(PlatformDataKeys.EDITOR);
-        PsiFile layout = Utils.getLayoutFileFromCaret(editor, psiFile);
-
+        PsiFile psiFile = event.getData(LangDataKeys.PSI_FILE);
+        Editor editor = event.getData(PlatformDataKeys.EDITOR);
         if (psiFile == null || editor == null) {
             return;
         }
         String contentStr = psiFile.getText();
-        if (layout != null) {
-            contentStr = layout.getText();
-        }
         if (psiFile.getParent() != null) {
             viewSaxHandler.setLayoutPath(psiFile.getContainingDirectory().toString().replace("PsiDirectory:", ""));
             viewSaxHandler.setProject(event.getProject());
@@ -120,7 +99,9 @@ public class FindViewByMeAction extends BaseGenerateAction {
 
         @Override
         public void onCopyCode() {
-            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts).execute();
+            Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Transferable tText = new StringSelection(findViewDialog.textCode.getText());
+            clip.setContents(tText, null);
         }
 
         @Override

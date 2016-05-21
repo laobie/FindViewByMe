@@ -1,5 +1,4 @@
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
@@ -12,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class ViewSaxHandler extends DefaultHandler {
         // } catch (Exception e) {
         //     e.printStackTrace();
         // }
-        try {
+         try {
             handler.createViewList(str);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class ViewSaxHandler extends DefaultHandler {
             e.printStackTrace();
         }
         List<ViewPart> viewParts = handler.getViewPartList();
-        for (ViewPart viewPart : viewParts) {
+        for (ViewPart viewPart:viewParts){
             System.out.println(viewPart.toString());
         }
     }
