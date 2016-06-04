@@ -28,14 +28,14 @@
     </extensions>
 
     <actions>
-        <action id="AutoFindView" class="FindViewByMeAction" text="_Find View By Me">
+        <action id="AutoFindView" class="com.jaeger.findviewbyme.action.FindViewByMeAction" text="_Find View By Me">
             <add-to-group group-id="GenerateGroup"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
         </action>
     </actions>
 
     <actions>
-        <action id="AutoFindView_xml" class="FindViewByMeXmlAction" text="_Find View By Me(xml)">
+        <action id="AutoFindView_xml" class="com.jaeger.findviewbyme.action.FindViewByMeXmlAction" text="_Find View By Me(xml)">
             <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
         </action>

@@ -1,10 +1,11 @@
+package com.jaeger.findviewbyme.util;
+
+import com.jaeger.findviewbyme.model.ViewPart;
 import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
 
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.List;

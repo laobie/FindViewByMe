@@ -1,3 +1,4 @@
+package com.jaeger.findviewbyme.util;
 
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.module.Module;

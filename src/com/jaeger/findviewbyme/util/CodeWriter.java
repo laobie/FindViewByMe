@@ -1,8 +1,11 @@
+package com.jaeger.findviewbyme.util;
+
 import com.intellij.codeInsight.actions.ReformatCodeProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
+import com.jaeger.findviewbyme.model.ViewPart;
 import org.apache.http.util.TextUtils;
 
 import java.util.List;
@@ -22,7 +25,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
     private boolean isViewHolder;
     private String rootViewStr;
 
-    protected CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList, boolean isViewHolder, boolean isAddRootView, String rootViewStr) {
+    public CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList, boolean isViewHolder, boolean isAddRootView, String rootViewStr) {
         super(clazz.getProject(), "");
         this.psiFile = psiFile;
         mProject = clazz.getProject();

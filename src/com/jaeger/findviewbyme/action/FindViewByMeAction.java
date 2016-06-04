@@ -1,3 +1,5 @@
+package com.jaeger.findviewbyme.action;
+
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -6,6 +8,11 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import com.jaeger.findviewbyme.model.ViewPart;
+import com.jaeger.findviewbyme.util.ActionUtil;
+import com.jaeger.findviewbyme.util.CodeWriter;
+import com.jaeger.findviewbyme.util.Utils;
+import com.jaeger.findviewbyme.util.ViewSaxHandler;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -185,6 +192,5 @@ public class FindViewByMeAction extends BaseGenerateAction {
             }
         }
     };
-
 
 }

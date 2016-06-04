@@ -1,3 +1,8 @@
+package com.jaeger.findviewbyme.model;
+
+import com.jaeger.findviewbyme.util.Definitions;
+import com.jaeger.findviewbyme.util.Utils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

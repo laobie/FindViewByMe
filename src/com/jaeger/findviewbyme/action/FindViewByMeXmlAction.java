@@ -1,3 +1,5 @@
+package com.jaeger.findviewbyme.action;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -5,6 +7,9 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import com.jaeger.findviewbyme.util.ActionUtil;
+import com.jaeger.findviewbyme.model.ViewPart;
+import com.jaeger.findviewbyme.util.ViewSaxHandler;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
