@@ -3,6 +3,7 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
+import org.apache.http.util.TextUtils;
 
 import java.util.List;
 
@@ -17,13 +18,20 @@ public class CodeWriter extends WriteCommandAction.Simple {
     protected PsiElementFactory mFactory;
     private PsiFile psiFile;
 
-    protected CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList) {
+    private boolean isAddRootView;
+    private boolean isViewHolder;
+    private String rootViewStr;
+
+    protected CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList, boolean isViewHolder, boolean isAddRootView, String rootViewStr) {
         super(clazz.getProject(), "");
         this.psiFile = psiFile;
         mProject = clazz.getProject();
         mClass = clazz;
         mFactory = JavaPsiFacade.getElementFactory(mProject);
         this.viewPartList = viewPartList;
+        this.isAddRootView = isAddRootView;
+        this.isViewHolder = isViewHolder;
+        this.rootViewStr = rootViewStr;
     }
 
     /**
@@ -80,11 +88,17 @@ public class CodeWriter extends WriteCommandAction.Simple {
             if (!viewPart.isSelected() || fieldExist(viewPart)) {
                 continue;
             }
-            mClass.add(mFactory.createFieldFromText(viewPart.getDeclareString(false), mClass));
+            mClass.add(mFactory.createFieldFromText(viewPart.getDeclareString(false, false), mClass));
             if (initViewMethod != null) {
                 initViewMethod.getBody().add(mFactory.createStatementFromText(viewPart.getFindViewString(), mClass));
             } else {
-                methodBuild.append(viewPart.getFindViewString());
+                if (isViewHolder) {
+                    methodBuild.append(viewPart.getFindViewStringForViewHolder("convertView"));
+                } else if (isAddRootView && !TextUtils.isEmpty(rootViewStr)) {
+                    methodBuild.append(viewPart.getFindViewStringWithRootView(rootViewStr));
+                } else {
+                    methodBuild.append(viewPart.getFindViewString());
+                }
                 fieldCount++;
             }
         }

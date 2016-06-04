@@ -34,16 +34,6 @@ public class ViewPart {
         String name = String.copyValueOf(chars);
         name = name.replaceAll("_", "");
         setName(name);
-//        System.out.println(name);
-
-//        String[] words = id.split("_");
-//        StringBuilder nameBuilder = new StringBuilder(words[0]);
-//        for (int i = 1; i < words.length; i++) {
-//            nameBuilder.append(Character.toUpperCase(words[i].charAt(0)))
-//                    .append(words[i].substring(1));
-//        }
-//        setName(nameBuilder.toString());
-
     }
 
     public String getType() {
@@ -91,10 +81,14 @@ public class ViewPart {
         this.selected = selected;
     }
 
-    public String getDeclareString(boolean isViewHolder) {
+    public String getDeclareString(boolean isViewHolder, boolean isShow) {
         if (isViewHolder) {
             return String.format(OUTPUT_DECLARE_STRING_NOT_PRIVATE, type, name);
         } else {
+            if (isShow) {
+                return String.format(OUTPUT_DECLARE_STRING, type, name);
+            }
+
             String realType;
             if (!Utils.isEmptyString(getTypeFull())) {
                 realType = getTypeFull();
@@ -107,9 +101,6 @@ public class ViewPart {
         }
     }
 
-    public String getDeclareStringForViewHolder() {
-        return String.format(OUTPUT_DECLARE_STRING, type, name);
-    }
 
     public String getFindViewStringWithRootView(String rootView) {
         return String.format(OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW, name, type, rootView, id);

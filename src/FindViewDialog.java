@@ -31,7 +31,7 @@ public class FindViewDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (onClickListener != null) {
-                    onClickListener.onCopyCode();
+                    onClickListener.onOK();
                 }
                 onCancel();
             }
@@ -139,7 +139,7 @@ public class FindViewDialog extends JDialog {
     public interface onClickListener {
         void onAddRootView();
 
-        void onCopyCode();
+        void onOK();
 
         void onSelectAll();
 
