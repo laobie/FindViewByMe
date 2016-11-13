@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.jaeger.findviewbyme</id>
     <name>FindViewByMe</name>
-    <version>1.2.2</version>
+    <version>1.3.0</version>
     <vendor email="chjie.jaeger@gmail.com" url="http://laobie.github.io">Jaeger</vendor>
 
     <description><![CDATA[
@@ -9,14 +9,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
-     <li>0. support "include" layout.</li>
+     <li>0. now can generate in Java source file</li>
      <li>1. support generate "findViewById" code for activity.</li>
      <li>2. support generate "findViewById" code for fragment, and you can customize root view name.</li>
      <li>3. support generate "findViewById" code for ViewHolder.</li>
      <li>4. support add "m" for view variable name.</li>
-     <li>5. bug fix</li>
-     <li>6. "@id" support.</li>
-
      <br>
     ]]>
     </change-notes>
@@ -28,14 +25,14 @@
     </extensions>
 
     <actions>
-        <action id="AutoFindView" class="com.jaeger.findviewbyme.action.FindViewByMeAction" text="_Find View By Me">
+        <action id="AutoFindView" class="com.jaeger.findviewbyme.action.FindViewByMeAction" text="_FindViewByMe">
             <add-to-group group-id="GenerateGroup"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
         </action>
     </actions>
 
     <actions>
-        <action id="AutoFindView_xml" class="com.jaeger.findviewbyme.action.FindViewByMeXmlAction" text="_Find View By Me(xml)">
+        <action id="AutoFindView_xml" class="com.jaeger.findviewbyme.action.FindViewByMeXmlAction" text="_FindViewByMe (xml)">
             <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
         </action>
