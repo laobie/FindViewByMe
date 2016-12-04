@@ -12,7 +12,7 @@ A plugin for android developer, with the plugin you can generate "findViewById" 
 
 ![](/screenshot/usage_in_java_source_file.gif)
 
- [使用简介：第一个插件FindViewByMe](http://laobie.github.io/android/2015/11/27/find-view-by-me.html)
+ [使用简介：第一个插件 FindViewByMe](http://laobie.github.io/android/2015/11/27/find-view-by-me.html)
  
 ### License
 
