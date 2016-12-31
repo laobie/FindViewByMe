@@ -1,7 +1,6 @@
 package com.jaeger.findviewbyme.util;
 
 import com.jaeger.findviewbyme.model.ViewPart;
-import org.apache.http.util.TextUtils;
 import org.xml.sax.SAXException;
 
 import javax.swing.event.TableModelListener;

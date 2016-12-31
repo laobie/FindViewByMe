@@ -6,7 +6,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.jaeger.findviewbyme.model.ViewPart;
-import org.apache.http.util.TextUtils;
 
 import java.util.List;
 

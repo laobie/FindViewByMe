@@ -115,7 +115,7 @@ public class ViewSaxHandler extends DefaultHandler {
             if (id != null) {
                 ViewPart viewPart = new ViewPart();
                 viewPart.setType(qName);
-                viewPart.setId(id.replace("@+id/", "").replace("@id/", ""));
+                viewPart.setId(id.replace("@+id/", "").replace("@id/", "").replace("@android:id/", ""));
                 viewPartList.add(viewPart);
             }
         }
