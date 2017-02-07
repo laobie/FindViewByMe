@@ -104,7 +104,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
 
         @Override
         public void onOK() {
-            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts,isViewHolder,isAddRootView,rootViewStr).execute();
+            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts,isViewHolder,isAddRootView,rootViewStr, editor).execute();
         }
 
         @Override

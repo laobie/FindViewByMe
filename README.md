@@ -28,3 +28,5 @@ A plugin for android developer, with the plugin you can generate "findViewById" 
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
+
+														Very practical
