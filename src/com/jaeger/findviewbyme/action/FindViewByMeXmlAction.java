@@ -80,7 +80,7 @@ public class FindViewByMeXmlAction extends AnAction {
      */
     private FindViewDialog.onClickListener onClickListener = new FindViewDialog.onClickListener() {
         @Override
-        public void onAddRootView() {
+        public void onUpdateRootView() {
             generateCode();
         }
 

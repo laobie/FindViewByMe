@@ -1,17 +1,13 @@
 package com.jaeger.findviewbyme.util;
 
 import com.intellij.codeInsight.actions.ReformatCodeProcessor;
-import com.intellij.codeInsight.hint.HintManager;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.UserDataHolder;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.intellij.psi.search.EverythingGlobalScope;
 import com.jaeger.findviewbyme.model.ViewPart;
-import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -79,6 +75,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
 
     /**
      * Add the initView() after onCreate()
+     *
      * @param rootViewStr
      */
     private void addInitViewAfterOnCreate(@Nullable String rootViewStr) {
@@ -94,6 +91,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
 
     /**
      * Add the {@code initView} method after onCreateView()
+     *
      * @param rootViewStr
      */
     private void addInitViewAfterOnCreateView(@Nullable String rootViewStr) {
@@ -110,7 +108,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
 
     /**
      * Creates a string representing the initView method.
-     *
+     * <p>
      * If {@code rootViewStr} is provided then it will generate a method with
      * {@code rootViewStr} as a param. A no-params method in case it's not provided.
      *
@@ -139,7 +137,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
         int fieldCount = 0;
         PsiMethod initViewMethod = getInitView();
         StringBuilder methodBuild;
-        if (isAddRootView) {
+        if (isAddRootView && !TextUtils.isEmpty(rootViewStr)) {
             methodBuild = new StringBuilder("private void initView(View " + rootViewStr + ") {");
         } else {
             methodBuild = new StringBuilder("private void initView() {");

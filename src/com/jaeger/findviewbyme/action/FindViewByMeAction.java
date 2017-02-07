@@ -70,7 +70,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
     }
 
     /**
-     * 获取View列表
+     * get views list
      *
      * @param event 触发事件
      */
@@ -98,13 +98,13 @@ public class FindViewByMeAction extends BaseGenerateAction {
      */
     private FindViewDialog.onClickListener onClickListener = new FindViewDialog.onClickListener() {
         @Override
-        public void onAddRootView() {
+        public void onUpdateRootView() {
             generateCode();
         }
 
         @Override
         public void onOK() {
-            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts,isViewHolder,isAddRootView,rootViewStr, editor).execute();
+            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts, isViewHolder, isAddRootView, rootViewStr, editor).execute();
         }
 
         @Override
@@ -134,6 +134,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
         @Override
         public void onSwitchAddRootView(boolean flag) {
             isAddRootView = flag;
+            generateCode();
         }
 
         @Override

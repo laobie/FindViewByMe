@@ -3,6 +3,8 @@ package com.jaeger.findviewbyme.action;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
@@ -10,7 +12,6 @@ public class FindViewDialog extends JDialog {
     private JPanel contentPane;
     public JButton btnCopyCode;
     public JButton btnClose;
-    public JButton btnAddRootView;
     public JCheckBox chbAddRootView;
     public JTextField textRootView;
     public JTextArea textCode;
@@ -25,9 +26,7 @@ public class FindViewDialog extends JDialog {
     public FindViewDialog() {
         setContentPane(contentPane);
         setModal(true);
-//        getRootPane().setDefaultButton(btnCopyCode);
         textRootView.setEnabled(false);
-        btnAddRootView.setEnabled(false);
 
         btnCopyCode.addActionListener(new ActionListener() {
             @Override
@@ -39,11 +38,26 @@ public class FindViewDialog extends JDialog {
             }
         });
 
-        btnAddRootView.addActionListener(new ActionListener() {
+        textRootView.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void insertUpdate(DocumentEvent e) {
                 if (onClickListener != null) {
-                    onClickListener.onAddRootView();
+                    onClickListener.onUpdateRootView();
+                }
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (onClickListener != null) {
+                    onClickListener.onUpdateRootView();
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (onClickListener != null) {
+                    onClickListener.onUpdateRootView();
                 }
             }
         });
@@ -56,6 +70,7 @@ public class FindViewDialog extends JDialog {
                 }
             }
         });
+
         chbIsViewHolder.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -73,9 +88,9 @@ public class FindViewDialog extends JDialog {
                     onClickListener.onSwitchAddRootView(isAdd);
                 }
                 textRootView.setEnabled(isAdd);
-                btnAddRootView.setEnabled(isAdd);
             }
         });
+
         btnClose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,7 +144,7 @@ public class FindViewDialog extends JDialog {
 
     private void onCancel() {
         dispose();
-        if (onClickListener!=null){
+        if (onClickListener != null) {
             onClickListener.onFinish();
         }
     }
@@ -139,7 +154,7 @@ public class FindViewDialog extends JDialog {
     }
 
     public interface onClickListener {
-        void onAddRootView();
+        void onUpdateRootView();
 
         void onOK();
 
@@ -168,6 +183,6 @@ public class FindViewDialog extends JDialog {
     }
 
     public String getRootView() {
-        return textRootView.getText();
+        return textRootView.getText().trim();
     }
 }
