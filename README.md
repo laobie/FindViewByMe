@@ -8,7 +8,8 @@ A plugin for android developer, with the plugin you can generate "findViewById" 
 
 ### Usage
 
-1.3.5 support fragment 
+1.3.5 support fragment, thanks [@fedestyla \(Federico Palmieri\)](https://github.com/fedestyla)
+
 1.3.0 support generate code in Java source file
 
 ![](/screenshot/usage_in_java_source_file.gif)
