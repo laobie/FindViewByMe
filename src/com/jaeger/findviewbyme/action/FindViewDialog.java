@@ -1,5 +1,8 @@
 package com.jaeger.findviewbyme.action;
 
+import com.intellij.ide.util.PropertiesComponent;
+import com.jaeger.findviewbyme.model.PropertiesKey;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -27,6 +30,8 @@ public class FindViewDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         textRootView.setEnabled(false);
+
+        initStatus();
 
         btnCopyCode.addActionListener(new ActionListener() {
             @Override
@@ -67,6 +72,7 @@ public class FindViewDialog extends JDialog {
             public void stateChanged(ChangeEvent e) {
                 if (onClickListener != null) {
                     onClickListener.onSwitchAddM(chbAddM.isSelected());
+                    PropertiesComponent.getInstance().setValue(PropertiesKey.SAVE_ADD_M_ACTION, chbAddM.isSelected());
                 }
             }
         });
@@ -140,6 +146,10 @@ public class FindViewDialog extends JDialog {
                                            },
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+    }
+
+    private void initStatus() {
+        chbAddM.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
     }
 
     private void onCancel() {

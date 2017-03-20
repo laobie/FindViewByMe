@@ -1,5 +1,6 @@
 package com.jaeger.findviewbyme.action;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -7,6 +8,7 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import com.jaeger.findviewbyme.model.PropertiesKey;
 import com.jaeger.findviewbyme.util.ActionUtil;
 import com.jaeger.findviewbyme.model.ViewPart;
 import com.jaeger.findviewbyme.util.ViewSaxHandler;
@@ -46,6 +48,7 @@ public class FindViewByMeXmlAction extends AnAction {
             findViewDialog = new FindViewDialog();
         }
         getViewList(anActionEvent);
+        ActionUtil.switchAddM(viewParts, PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
         updateTable();
         findViewDialog.setTitle("FindViewByMe in XML");
         findViewDialog.setOnClickListener(onClickListener);
