@@ -19,6 +19,7 @@ import com.jaeger.findviewbyme.util.ViewSaxHandler;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -87,7 +88,14 @@ public class FindViewByMeAction extends BaseGenerateAction {
             contentStr = layout.getText();
         }
         if (psiFile.getParent() != null) {
-            viewSaxHandler.setLayoutPath(psiFile.getContainingDirectory().toString().replace("PsiDirectory:", ""));
+            String javaPath = psiFile.getContainingDirectory().toString().replace("PsiDirectory:", "");
+            String javaPathKey = "src" + File.separator + "main" + File.separator + "java";
+            int indexOf = javaPath.indexOf(javaPathKey);
+            String layoutPath = "";
+            if (indexOf != -1) {
+                layoutPath = javaPath.substring(0, indexOf) + "src" + File.separator + "main" + File.separator + "res" + File.separator + "layout";
+            }
+            viewSaxHandler.setLayoutPath(layoutPath);
             viewSaxHandler.setProject(event.getProject());
         }
         viewParts = ActionUtil.getViewPartList(viewSaxHandler, contentStr);

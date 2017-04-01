@@ -46,12 +46,6 @@ public class ViewSaxHandler extends DefaultHandler {
                 "\n";
 
         ViewSaxHandler handler = new ViewSaxHandler();
-        // InputStream stream = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        // try {
-        //     handler.createViewList(stream);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
         try {
             handler.createViewList(str);
         } catch (ParserConfigurationException e) {
