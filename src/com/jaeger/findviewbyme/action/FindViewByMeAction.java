@@ -2,12 +2,14 @@ package com.jaeger.findviewbyme.action;
 
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
+import com.jaeger.findviewbyme.model.PropertiesKey;
 import com.jaeger.findviewbyme.model.ViewPart;
 import com.jaeger.findviewbyme.util.ActionUtil;
 import com.jaeger.findviewbyme.util.CodeWriter;
@@ -58,6 +60,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
             findViewDialog = new FindViewDialog();
         }
         getViewList(anActionEvent);
+        ActionUtil.switchAddM(viewParts, PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
         updateTable();
         findViewDialog.setTitle("FindViewByMe");
         findViewDialog.btnCopyCode.setText("OK");
@@ -65,8 +68,6 @@ public class FindViewByMeAction extends BaseGenerateAction {
         findViewDialog.pack();
         findViewDialog.setLocationRelativeTo(WindowManager.getInstance().getFrame(anActionEvent.getProject()));
         findViewDialog.setVisible(true);
-
-
     }
 
     /**
