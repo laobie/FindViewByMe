@@ -119,7 +119,7 @@ public class ViewPart {
         generateName(id);
     }
 
-    public void addM2Name() {
+    public void addMForName() {
         generateName("m_" + id);
     }
 

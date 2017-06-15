@@ -7,6 +7,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * 16/5/28.
  */
 public class ActionUtil {
-    static String[] headers = {"selected", "type", "id", "name"};
+    private final static String[] HEADERS = {"selected", "type", "id", "name"};
 
     public static List<ViewPart> getViewPartList(ViewSaxHandler viewSaxHandler, String oriContact) {
         try {
@@ -27,13 +28,13 @@ public class ActionUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<ViewPart>();
     }
 
     public static void switchAddM(List<ViewPart> viewParts, boolean isAddM) {
         if (isAddM) {
             for (ViewPart viewPart : viewParts) {
-                viewPart.addM2Name();
+                viewPart.addMForName();
             }
         } else {
             for (ViewPart viewPart : viewParts) {
@@ -89,7 +90,7 @@ public class ActionUtil {
         }
 
 
-        tableModel = new DefaultTableModel(cellData, headers) {
+        tableModel = new DefaultTableModel(cellData, HEADERS) {
             final Class[] typeArray = {Boolean.class, Object.class, Object.class, Object.class};
 
             @Override
