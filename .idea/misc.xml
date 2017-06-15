@@ -10,7 +10,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="IntelliJ IDEA Community Edition IC-163.12024.16" project-jdk-type="IDEA JDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="IntelliJ IDEA IU-162.2032.8" project-jdk-type="IDEA JDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
