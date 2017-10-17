@@ -29,6 +29,7 @@ import java.util.List;
 public class FindViewByMeXmlAction extends AnAction {
     private boolean isAddRootView;
     private boolean isViewHolder;
+    private boolean isTarget26;
 
     private ViewSaxHandler viewSaxHandler;
     private FindViewDialog findViewDialog;
@@ -43,6 +44,7 @@ public class FindViewByMeXmlAction extends AnAction {
     public void actionPerformed(AnActionEvent anActionEvent) {
         isAddRootView = false;
         isViewHolder = false;
+        isTarget26 = false;
         viewSaxHandler = new ViewSaxHandler();
         if (findViewDialog == null) {
             findViewDialog = new FindViewDialog();
@@ -136,6 +138,12 @@ public class FindViewByMeXmlAction extends AnAction {
         }
 
         @Override
+        public void onSwitchIsTarget26(boolean target26) {
+            isTarget26 = target26;
+            generateCode();
+        }
+
+        @Override
         public void onFinish() {
             viewParts = null;
             viewSaxHandler = null;
@@ -148,7 +156,7 @@ public class FindViewByMeXmlAction extends AnAction {
      * 生成FindViewById代码
      */
     private void generateCode() {
-        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isAddRootView, findViewDialog.getRootView()));
+        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isTarget26, isAddRootView, findViewDialog.getRootView()));
     }
 
     /**

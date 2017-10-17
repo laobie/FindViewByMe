@@ -8,13 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="792949ab-740d-4465-a925-0214767879bf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FindViewByMe.iml" afterPath="$PROJECT_DIR$/FindViewByMe.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeAction.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewDialog.form" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewDialog.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/model/ViewPart.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/model/ViewPart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/ActionUtil.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/ActionUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/CodeWriter.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/CodeWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java" afterPath="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java" />
     </list>
     <ignored path="FindViewByMe.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +39,18 @@
     <favorites_list name="FindViewByMe" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="FindViewByMeXmlAction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2440">
+              <caret line="190" column="0" lean-forward="true" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -99,7 +104,6 @@
         <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/TextUtils.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/model/Key.java" />
-        <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/FindViewByMe.iml" />
@@ -111,6 +115,7 @@
         <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/model/ViewPart.java" />
         <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/ActionUtil.java" />
         <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/util/CodeWriter.java" />
+        <option value="$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java" />
       </list>
     </option>
   </component>
@@ -673,7 +678,14 @@
       <option name="project" value="LOCAL" />
       <updated>1448863025072</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="&#10;Added Smart Cast Checkbox when Targeting API26 &#10;">
+      <created>1508269284500</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508269284500</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -695,7 +707,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32750243" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -947,14 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1893">
-          <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewDialog.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1089,6 +1093,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jaeger/findviewbyme/action/FindViewByMeXmlAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2440">
+          <caret line="190" column="0" lean-forward="true" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
           <folding />
         </state>
       </provider>
