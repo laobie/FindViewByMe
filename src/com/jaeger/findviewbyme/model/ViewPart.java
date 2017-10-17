@@ -14,9 +14,16 @@ public class ViewPart {
 
     private static final String OUTPUT_DECLARE_STRING = "private %s %s;\n";
     private static final String OUTPUT_DECLARE_STRING_NOT_PRIVATE = "%s %s;\n";
+
     private static final String OUTPUT_FIND_VIEW_STRING = "%s = (%s) findViewById(R.id.%s);\n";
+    private static final String OUTPUT_FIND_VIEW_STRING_TARGET26 = "%s = findViewById(R.id.%s);\n";
+
     private static final String OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW = "%s = (%s) %s.findViewById(R.id.%s);\n";
+    private static final String OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW_TARGET26 = "%s = %s.findViewById(R.id.%s);\n";
+
     private static final String OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER = "viewHolder.%s = (%s) %s.findViewById(R.id.%s);\n";
+    private static final String OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER_TARGET26 = "viewHolder.%s = %s.findViewById(R.id.%s);\n";
+
     private String type;
     private String typeFull;
     private String id;
@@ -107,11 +114,17 @@ public class ViewPart {
     }
 
 
-    public String getFindViewStringWithRootView(String rootView) {
+    public String getFindViewStringWithRootView(String rootView, boolean isTarget26) {
+        if (isTarget26)
+            return String.format(OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW_TARGET26, name, rootView, id);
+
         return String.format(OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW, name, type, rootView, id);
     }
 
-    public String getFindViewString() {
+    public String getFindViewString(boolean isTarget26) {
+        if (isTarget26)
+            return String.format(OUTPUT_FIND_VIEW_STRING_TARGET26, name, id);
+
         return String.format(OUTPUT_FIND_VIEW_STRING, name, type, id);
     }
 
@@ -123,9 +136,13 @@ public class ViewPart {
         generateName("m_" + id);
     }
 
-    public String getFindViewStringForViewHolder(String rootView) {
+    public String getFindViewStringForViewHolder(String rootView, boolean isTarget26) {
+        if (isTarget26)
+            return String.format(OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER_TARGET26, name, rootView, id);
+
         return String.format(OUTPUT_FIND_VIEW_STRING_FOR_VIEW_HOLDER, name, type, rootView, id);
     }
+
 
     @Override
     public String toString() {
