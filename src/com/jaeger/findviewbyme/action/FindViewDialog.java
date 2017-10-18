@@ -92,6 +92,7 @@ public class FindViewDialog extends JDialog {
             public void stateChanged(ChangeEvent e) {
                 if (onClickListener != null) {
                     onClickListener.onSwitchIsTarget26(chbIsTarget26.isSelected());
+                    PropertiesComponent.getInstance().setValue(PropertiesKey.IS_TARGET_26, chbIsTarget26.isSelected());
                 }
             }
         });
@@ -170,6 +171,7 @@ public class FindViewDialog extends JDialog {
 
     private void initStatus() {
         chbAddM.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
+        chbIsTarget26.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.IS_TARGET_26, false));
     }
 
     private void onCancel() {

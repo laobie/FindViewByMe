@@ -43,7 +43,7 @@ public class ActionUtil {
         }
     }
 
-    public static String generateCode(List<ViewPart> viewParts, boolean isViewHolder,boolean isTarget26, boolean isAddRootView, String rootView) {
+    public static String generateCode(List<ViewPart> viewParts, boolean isViewHolder, boolean isTarget26, boolean isAddRootView, String rootView) {
         StringBuilder stringBuilder = new StringBuilder();
         for (ViewPart viewPart : viewParts) {
             if (viewPart.isSelected()) {
@@ -55,9 +55,9 @@ public class ActionUtil {
             if (viewPart.isSelected()) {
 
                 if (isViewHolder) {
-                    stringBuilder.append(viewPart.getFindViewStringForViewHolder("convertView",isTarget26));
+                    stringBuilder.append(viewPart.getFindViewStringForViewHolder("convertView", isTarget26));
                 } else if (isAddRootView && !TextUtils.isEmpty(rootView)) {
-                    stringBuilder.append(viewPart.getFindViewStringWithRootView(rootView,isTarget26));
+                    stringBuilder.append(viewPart.getFindViewStringWithRootView(rootView, isTarget26));
                 } else {
                     stringBuilder.append(viewPart.getFindViewString(isTarget26));
                 }

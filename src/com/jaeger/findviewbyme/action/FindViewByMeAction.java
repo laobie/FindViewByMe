@@ -64,6 +64,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
         }
         getViewList(anActionEvent);
         ActionUtil.switchAddM(viewParts, PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
+        isTarget26 = PropertiesComponent.getInstance().getBoolean(PropertiesKey.IS_TARGET_26, false);
         updateTable();
         findViewDialog.setTitle("FindViewByMe");
         findViewDialog.btnCopyCode.setText("OK");
@@ -163,6 +164,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
         @Override
         public void onSwitchIsTarget26(boolean target26) {
             isTarget26 = target26;
+            generateCode();
         }
 
         @Override
