@@ -29,6 +29,7 @@ import java.util.List;
 public class FindViewByMeAction extends BaseGenerateAction {
     private boolean isAddRootView;
     private boolean isViewHolder;
+    private boolean isTarget26;
     private String rootViewStr;
 
     private ViewSaxHandler viewSaxHandler;
@@ -56,6 +57,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
     public void actionPerformed(AnActionEvent anActionEvent) {
         isAddRootView = false;
         isViewHolder = false;
+        isTarget26 = false;
         viewSaxHandler = new ViewSaxHandler();
         if (findViewDialog == null) {
             findViewDialog = new FindViewDialog();
@@ -113,7 +115,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
 
         @Override
         public void onOK() {
-            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts, isViewHolder, isAddRootView, rootViewStr, editor).execute();
+            new CodeWriter(psiFile, getTargetClass(editor, psiFile), viewParts, isViewHolder,isTarget26, isAddRootView, rootViewStr, editor).execute();
         }
 
         @Override
@@ -159,6 +161,11 @@ public class FindViewByMeAction extends BaseGenerateAction {
         }
 
         @Override
+        public void onSwitchIsTarget26(boolean target26) {
+            isTarget26 = target26;
+        }
+
+        @Override
         public void onFinish() {
             viewParts = null;
             viewSaxHandler = null;
@@ -172,7 +179,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
      */
     private void generateCode() {
         rootViewStr = findViewDialog.getRootView();
-        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isAddRootView, rootViewStr));
+        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder,isTarget26, isAddRootView, rootViewStr));
     }
 
     /**

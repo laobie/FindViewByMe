@@ -24,6 +24,7 @@ public class FindViewDialog extends JDialog {
     public JButton btnSelectNone;
     public JButton btnNegativeSelect;
     private JCheckBox chbIsViewHolder;
+    private JCheckBox chbIsTarget26;
     private onClickListener onClickListener;
 
     public FindViewDialog() {
@@ -82,6 +83,15 @@ public class FindViewDialog extends JDialog {
             public void stateChanged(ChangeEvent e) {
                 if (onClickListener != null) {
                     onClickListener.onSwitchIsViewHolder(chbIsViewHolder.isSelected());
+                }
+            }
+        });
+
+        chbIsTarget26.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (onClickListener != null) {
+                    onClickListener.onSwitchIsTarget26(chbIsTarget26.isSelected());
                 }
             }
         });
@@ -189,6 +199,9 @@ public class FindViewDialog extends JDialog {
         void onSwitchAddM(boolean addM);
 
         void onSwitchIsViewHolder(boolean isViewHolder);
+
+        void onSwitchIsTarget26(boolean target26);
+
 
         void onFinish();
     }

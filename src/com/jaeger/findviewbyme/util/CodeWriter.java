@@ -27,9 +27,10 @@ public class CodeWriter extends WriteCommandAction.Simple {
 
     private boolean isAddRootView;
     private boolean isViewHolder;
+    private boolean isTarget26;
     private String rootViewStr;
 
-    public CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList, boolean isViewHolder, boolean isAddRootView, String rootViewStr, Editor editor) {
+    public CodeWriter(PsiFile psiFile, PsiClass clazz, List<ViewPart> viewPartList, boolean isViewHolder,boolean isTarget26, boolean isAddRootView, String rootViewStr, Editor editor) {
         super(clazz.getProject(), "");
         this.psiFile = psiFile;
         mProject = clazz.getProject();
@@ -39,6 +40,7 @@ public class CodeWriter extends WriteCommandAction.Simple {
         this.viewPartList = viewPartList;
         this.isAddRootView = isAddRootView;
         this.isViewHolder = isViewHolder;
+        this.isTarget26 = isTarget26;
         this.rootViewStr = rootViewStr;
     }
 
@@ -148,14 +150,14 @@ public class CodeWriter extends WriteCommandAction.Simple {
             }
             mClass.add(mFactory.createFieldFromText(viewPart.getDeclareString(false, false), mClass));
             if (initViewMethod != null) {
-                initViewMethod.getBody().add(mFactory.createStatementFromText(viewPart.getFindViewString(), mClass));
+                initViewMethod.getBody().add(mFactory.createStatementFromText(viewPart.getFindViewString(isTarget26), mClass));
             } else {
                 if (isViewHolder) {
-                    methodBuild.append(viewPart.getFindViewStringForViewHolder("convertView"));
+                    methodBuild.append(viewPart.getFindViewStringForViewHolder("convertView",isTarget26));
                 } else if (isAddRootView && !TextUtils.isEmpty(rootViewStr)) {
-                    methodBuild.append(viewPart.getFindViewStringWithRootView(rootViewStr));
+                    methodBuild.append(viewPart.getFindViewStringWithRootView(rootViewStr,isTarget26));
                 } else {
-                    methodBuild.append(viewPart.getFindViewString());
+                    methodBuild.append(viewPart.getFindViewString(isTarget26));
                 }
                 fieldCount++;
             }
