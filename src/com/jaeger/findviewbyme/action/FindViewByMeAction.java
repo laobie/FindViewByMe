@@ -128,6 +128,11 @@ public class FindViewByMeAction extends BaseGenerateAction {
         }
 
         @Override
+        public void onSearch(String string) {
+
+        }
+
+        @Override
         public void onSelectNone() {
             for (ViewPart viewPart : viewParts) {
                 viewPart.setSelected(false);

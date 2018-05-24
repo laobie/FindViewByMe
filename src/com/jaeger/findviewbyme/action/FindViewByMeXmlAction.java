@@ -36,6 +36,7 @@ public class FindViewByMeXmlAction extends AnAction {
     private List<ViewPart> viewParts;
 
     private DefaultTableModel tableModel;
+    private int select = 0;
 
     /**
      * 启动时触发
@@ -106,6 +107,16 @@ public class FindViewByMeXmlAction extends AnAction {
         }
 
         @Override
+        public void onSearch(String string) {
+            for (ViewPart viewPart : viewParts) {
+                viewPart.setSelected(true);
+            }
+            updateTable();
+            selectWrod(string);
+            findViewDialog.setSelect(4);
+        }
+
+        @Override
         public void onSelectNone() {
             for (ViewPart viewPart : viewParts) {
                 viewPart.setSelected(false);
@@ -170,6 +181,17 @@ public class FindViewByMeXmlAction extends AnAction {
         tableModel = ActionUtil.getTableModel(viewParts, tableModelListener);
         findViewDialog.setModel(tableModel);
         generateCode();
+    }
+
+    /**
+     * 搜索关键字的位置
+     * @param wrod
+     * @return
+     */
+    public int selectWrod(String wrod){
+
+
+        return 0;
     }
 
     TableModelListener tableModelListener = new TableModelListener() {
