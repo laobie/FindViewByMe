@@ -120,15 +120,6 @@ public class FindViewByMeAction extends BaseGenerateAction {
         }
 
         @Override
-        public void onSearchItem(String item) {
-            //搜索
-           System.out.print("搜索出来的数据:"+item);
-            for (ViewPart viewPart : viewParts) {
-//                viewPart.setSelected(true);
-            }
-        }
-
-        @Override
         public void onSelectAll() {
             for (ViewPart viewPart : viewParts) {
                 viewPart.setSelected(true);

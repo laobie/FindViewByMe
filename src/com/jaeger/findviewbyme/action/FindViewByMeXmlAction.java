@@ -9,8 +9,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
 import com.jaeger.findviewbyme.model.PropertiesKey;
-import com.jaeger.findviewbyme.model.ViewPart;
 import com.jaeger.findviewbyme.util.ActionUtil;
+import com.jaeger.findviewbyme.model.ViewPart;
 import com.jaeger.findviewbyme.util.ViewSaxHandler;
 
 import javax.swing.event.TableModelEvent;
@@ -98,12 +98,6 @@ public class FindViewByMeXmlAction extends AnAction {
         }
 
         @Override
-        public void onSearchItem(String string) {
-//            System.out.print("FindViewByMe 对话框回调=" + string);
-            findViewDialog.setSelection(3);
-        }
-
-        @Override
         public void onSelectAll() {
             for (ViewPart viewPart : viewParts) {
                 viewPart.setSelected(true);
@@ -165,7 +159,6 @@ public class FindViewByMeXmlAction extends AnAction {
     private void generateCode() {
         findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isTarget26, isAddRootView, findViewDialog.getRootView()));
     }
-
 
     /**
      * 更新 View 表格

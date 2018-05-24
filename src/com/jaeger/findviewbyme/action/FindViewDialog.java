@@ -25,8 +25,6 @@ public class FindViewDialog extends JDialog {
     public JButton btnNegativeSelect;
     private JCheckBox chbIsViewHolder;
     private JCheckBox chbIsTarget26;
-    private JTextField inputSearch;
-    public JButton btnSearch;
     private onClickListener onClickListener;
 
     public FindViewDialog() {
@@ -36,15 +34,6 @@ public class FindViewDialog extends JDialog {
 
         initStatus();
 
-        //搜索
-        btnSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (onClickListener != null) {
-                    onClickListener.onSearchItem(getSearchView());
-                }
-            }
-        });
         btnCopyCode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -196,16 +185,10 @@ public class FindViewDialog extends JDialog {
         textCode.setText(codeStr);
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-
     public interface onClickListener {
         void onUpdateRootView();
 
         void onOK();
-
-        void onSearchItem(String item);
 
         void onSelectAll();
 
@@ -236,13 +219,5 @@ public class FindViewDialog extends JDialog {
 
     public String getRootView() {
         return textRootView.getText().trim();
-    }
-
-    public String getSearchView(){
-        return inputSearch.getText().trim();
-    }
-
-    public void setSelection(int position){
-        textCode.setSelectionStart(position);
     }
 }
