@@ -27,23 +27,24 @@ public class ViewSaxHandler extends DefaultHandler {
     private Project project;
 
     public static void main(String[] args) {
-        String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                "<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
-                "              android:orientation=\"vertical\"\n" +
-                "              android:layout_width=\"fill_parent\"\n" +
-                "              android:layout_height=\"fill_parent\">\n" +
-                "    <TextView\n" +
-                "            android:id=\"@id/hello_world\"\n" +
-                "            android:layout_width=\"fill_parent\"\n" +
-                "            android:layout_height=\"wrap_content\"\n" +
-                "            android:text=\"Hello World, MyActivity\"/>\n" +
-                "    <TextView\n" +
-                "            android:id=\"@+id/hello_world_plus\"\n" +
-                "            android:layout_width=\"fill_parent\"\n" +
-                "            android:layout_height=\"wrap_content\"\n" +
-                "            android:text=\"Hello World, MyActivity\"/>\n" +
-                "</LinearLayout>\n" +
-                "\n";
+        String str = TextUtils.str;
+//        String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+//                "<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
+//                "              android:orientation=\"vertical\"\n" +
+//                "              android:layout_width=\"fill_parent\"\n" +
+//                "              android:layout_height=\"fill_parent\">\n" +
+//                "    <TextView\n" +
+//                "            android:id=\"@id/hello_world\"\n" +
+//                "            android:layout_width=\"fill_parent\"\n" +
+//                "            android:layout_height=\"wrap_content\"\n" +
+//                "            android:text=\"Hello World, MyActivity\"/>\n" +
+//                "    <TextView\n" +
+//                "            android:id=\"@+id/hello_world_plus\"\n" +
+//                "            android:layout_width=\"fill_parent\"\n" +
+//                "            android:layout_height=\"wrap_content\"\n" +
+//                "            android:text=\"Hello World, MyActivity\"/>\n" +
+//                "</LinearLayout>\n" +
+//                "\n";
 
         ViewSaxHandler handler = new ViewSaxHandler();
         try {

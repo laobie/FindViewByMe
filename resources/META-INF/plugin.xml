@@ -32,9 +32,16 @@
 
     <actions>
         <action id="AutoFindView_xml" class="com.jaeger.findviewbyme.action.FindViewByMeXmlAction" text="_FindViewByMe (xml)">
+            <!--<add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>-->
             <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
         </action>
     </actions>
-
+    <actions>
+        <action id="AutoFindView_xml" class="com.jaeger.findviewbyme.action.FindViewByMeXmlAction" text="_FindViewByMe (xml)">
+            <!--<add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>-->
+            <add-to-group group-id="XmlGenerateToolsGroup" anchor="before" relative-to-action="GenerateDTD"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl Y"/>
+        </action>
+    </actions>
 </idea-plugin>
