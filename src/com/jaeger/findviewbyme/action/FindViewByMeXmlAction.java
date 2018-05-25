@@ -118,15 +118,8 @@ public class FindViewByMeXmlAction extends AnAction {
 
         @Override
         public void onSearch(String string) {
-            for (ViewPart viewPart : viewParts) {
-                viewPart.setSelected(true);
-            }
-            updateTable();
             int i = selectWrod(string);
-
             findViewDialog.setSelect(i);
-
-
         }
 
         @Override

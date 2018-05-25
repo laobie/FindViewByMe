@@ -197,7 +197,7 @@ public class FindViewDialog extends JDialog {
     }
 
     public void setSelect(int position){
-        System.out.println("开始的位置"+position);
+//        System.out.println("开始的位置"+position);
         tableViews.grabFocus();
         tableViews.changeSelection(position,1,false,false);
     }
