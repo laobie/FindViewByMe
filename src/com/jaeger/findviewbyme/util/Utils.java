@@ -232,4 +232,13 @@ public class Utils {
     public static void alert(String msg) {
         Messages.showMessageDialog(msg, "FindViewByMe", Messages.getInformationIcon());
     }
+
+    /**
+     * @param src 主串
+     * @param sub 字串（模式串）
+     */
+    public static int bruteFore(String src, String sub) {
+        int i = src.toUpperCase().indexOf(sub.toUpperCase());
+        return i;
+    }
 }
