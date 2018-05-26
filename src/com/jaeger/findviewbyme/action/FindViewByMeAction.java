@@ -1,5 +1,14 @@
 package com.jaeger.findviewbyme.action;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
 import com.intellij.ide.util.PropertiesComponent;
@@ -12,15 +21,6 @@ import com.intellij.psi.PsiFile;
 import com.jaeger.findviewbyme.model.PropertiesKey;
 import com.jaeger.findviewbyme.model.ViewPart;
 import com.jaeger.findviewbyme.util.*;
-
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Jaeger
@@ -133,12 +133,7 @@ public class FindViewByMeAction extends BaseGenerateAction {
 
         @Override
         public void onSearch(String string) {
-            for (ViewPart viewPart : viewParts) {
-                viewPart.setSelected(true);
-            }
-            updateTable();
             int i = selectWrod(string);
-
             findViewDialog.setSelect(i);
         }
 
