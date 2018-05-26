@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="FindViewByMe:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/FindViewByMe_jar</output-path>
-    <root id="archive" name="FindViewByMe.jar">
-      <element id="module-output" name="FindViewByMe" />
-    </root>
-  </artifact>
-</component>
