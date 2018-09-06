@@ -44,12 +44,13 @@ public class ViewPart {
         Matcher matcher = pattern.matcher(id);
 
         char[] chars = id.toCharArray();
+        scrNameFromId = String.copyValueOf(chars);
         while (matcher.find()) {
             int index = matcher.start(1);
             chars[index] = Character.toUpperCase(chars[index]);
         }
         String name = String.copyValueOf(chars);
-        scrNameFromId = name;
+
         name = name.replaceAll("_", "");
 
         setName(name);
