@@ -25,8 +25,11 @@ public class FindViewDialog extends JDialog {
     public JButton btnNegativeSelect;
     private JCheckBox chbIsViewHolder;
     private JCheckBox chbIsTarget26;
+
     private JTextField editSearch;
     private JButton btnSearch;
+    private JCheckBox chbIsKotlin;
+    private JCheckBox chbIsExtensions;
     private onClickListener onClickListener;
 
     public FindViewDialog() {
@@ -108,6 +111,25 @@ public class FindViewDialog extends JDialog {
             }
         });
 
+        chbIsKotlin.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (onClickListener != null) {
+                    onClickListener.onSwitchIsKotlin(chbIsKotlin.isSelected());
+                    PropertiesComponent.getInstance().setValue(PropertiesKey.IS_KT, chbIsKotlin.isSelected());
+                }
+            }
+        });
+        chbIsExtensions.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (onClickListener != null) {
+                    onClickListener.onSwitchExtensions(chbIsExtensions.isSelected());
+                    PropertiesComponent.getInstance().setValue(PropertiesKey.IS_KT_ETX, chbIsExtensions.isSelected());
+                }
+            }
+        });
+
         chbAddRootView.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -183,6 +205,8 @@ public class FindViewDialog extends JDialog {
     private void initStatus() {
         chbAddM.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.SAVE_ADD_M_ACTION, false));
         chbIsTarget26.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.IS_TARGET_26, false));
+        chbIsKotlin.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.IS_KT, false));
+        chbIsExtensions.setSelected(PropertiesComponent.getInstance().getBoolean(PropertiesKey.IS_KT_ETX, false));
     }
 
     private void onCancel() {
@@ -196,10 +220,10 @@ public class FindViewDialog extends JDialog {
         textCode.setText(codeStr);
     }
 
-    public void setSelect(int position){
+    public void setSelect(int position) {
 //        System.out.println("开始的位置"+position);
         tableViews.grabFocus();
-        tableViews.changeSelection(position,1,false,false);
+        tableViews.changeSelection(position, 1, false, false);
     }
 
     public interface onClickListener {
@@ -208,6 +232,7 @@ public class FindViewDialog extends JDialog {
         void onOK();
 
         void onSelectAll();
+
         void onSearch(String string);
 
         void onSelectNone();
@@ -219,6 +244,10 @@ public class FindViewDialog extends JDialog {
         void onSwitchAddM(boolean addM);
 
         void onSwitchIsViewHolder(boolean isViewHolder);
+
+        void onSwitchIsKotlin(boolean isKotlin);
+
+        void onSwitchExtensions(boolean isExtensions);
 
         void onSwitchIsTarget26(boolean target26);
 
@@ -238,6 +267,7 @@ public class FindViewDialog extends JDialog {
     public String getRootView() {
         return textRootView.getText().trim();
     }
+
     public String getSerch() {
         return editSearch.getText().trim();
     }

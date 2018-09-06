@@ -66,6 +66,37 @@ public class ActionUtil {
         return stringBuilder.toString();
     }
 
+    public static String generateCode(List<ViewPart> viewParts, boolean isViewHolder, boolean isTarget26, boolean isAddRootView, String rootView, boolean isKotlin, boolean isExtensions) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (isKotlin) {
+            for (ViewPart viewPart : viewParts) {
+
+                stringBuilder.append(viewPart.getFindViewStringKt(isExtensions));
+            }
+
+        } else {
+            for (ViewPart viewPart : viewParts) {
+                if (viewPart.isSelected()) {
+                    stringBuilder.append(viewPart.getDeclareString(isViewHolder, true));
+                }
+            }
+            stringBuilder.append("\n");
+            for (ViewPart viewPart : viewParts) {
+                if (viewPart.isSelected()) {
+
+                    if (isViewHolder) {
+                        stringBuilder.append(viewPart.getFindViewStringForViewHolder("convertView", isTarget26));
+                    } else if (isAddRootView && !TextUtils.isEmpty(rootView)) {
+                        stringBuilder.append(viewPart.getFindViewStringWithRootView(rootView, isTarget26));
+                    } else {
+                        stringBuilder.append(viewPart.getFindViewString(isTarget26));
+                    }
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
     public static DefaultTableModel getTableModel(List<ViewPart> viewParts, TableModelListener tableModelListener) {
         DefaultTableModel tableModel;
         int size = viewParts.size();
