@@ -18,6 +18,8 @@ public class ViewPart {
     private static final String OUTPUT_FIND_VIEW_STRING = "%s = (%s) findViewById(R.id.%s);\n";
     private static final String OUTPUT_FIND_VIEW_STRING_TARGET26 = "%s = findViewById(R.id.%s);\n";
 
+    private static final String OUTPUT_FIND_VIEW_STRING_KOTLIN = "private val %s: %s by lazy { findViewById<%s>(R.id.%s) }\n";
+
     private static final String OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW = "%s = (%s) %s.findViewById(R.id.%s);\n";
     private static final String OUTPUT_FIND_VIEW_STRING_WITH_ROOT_VIEW_TARGET26 = "%s = %s.findViewById(R.id.%s);\n";
 
@@ -28,23 +30,29 @@ public class ViewPart {
     private String typeFull;
     private String id;
     private String name;
+    private String scrNameFromId;
     private boolean selected;
+
 
     public ViewPart() {
         selected = true;
     }
+
 
     private void generateName(String id) {
         Pattern pattern = Pattern.compile("_([a-zA-Z])");
         Matcher matcher = pattern.matcher(id);
 
         char[] chars = id.toCharArray();
+        scrNameFromId = String.copyValueOf(chars);
         while (matcher.find()) {
             int index = matcher.start(1);
             chars[index] = Character.toUpperCase(chars[index]);
         }
         String name = String.copyValueOf(chars);
+
         name = name.replaceAll("_", "");
+
         setName(name);
     }
 
@@ -93,6 +101,7 @@ public class ViewPart {
         this.selected = selected;
     }
 
+
     public String getDeclareString(boolean isViewHolder, boolean isShow) {
         if (isViewHolder) {
             return String.format(OUTPUT_DECLARE_STRING_NOT_PRIVATE, type, name);
@@ -126,6 +135,17 @@ public class ViewPart {
             return String.format(OUTPUT_FIND_VIEW_STRING_TARGET26, name, id);
 
         return String.format(OUTPUT_FIND_VIEW_STRING, name, type, id);
+    }
+
+    public String getFindViewStringKt(boolean isExtensions) {
+        String lName = "";
+        if (isExtensions) {
+            lName = scrNameFromId;
+        } else {
+            lName = name;
+        }
+
+        return String.format(OUTPUT_FIND_VIEW_STRING_KOTLIN, lName, type, type, id);
     }
 
     public void resetName() {

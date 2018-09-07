@@ -35,6 +35,8 @@ public class FindViewByMeXmlAction extends AnAction {
     private boolean isAddRootView;
     private boolean isViewHolder;
     private boolean isTarget26;
+    private boolean isKotlin;
+    private boolean isExtensions;
 
     private ViewSaxHandler viewSaxHandler;
     private FindViewDialog findViewDialog;
@@ -156,6 +158,18 @@ public class FindViewByMeXmlAction extends AnAction {
         }
 
         @Override
+        public void onSwitchIsKotlin(boolean lisKotlin) {
+            isKotlin = lisKotlin;
+            generateCode();
+        }
+
+        @Override
+        public void onSwitchExtensions(boolean lisExtensions) {
+            isExtensions = lisExtensions;
+            generateCode();
+        }
+
+        @Override
         public void onSwitchIsTarget26(boolean target26) {
             isTarget26 = target26;
             generateCode();
@@ -174,7 +188,7 @@ public class FindViewByMeXmlAction extends AnAction {
      * 生成FindViewById代码
      */
     private void generateCode() {
-        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isTarget26, isAddRootView, findViewDialog.getRootView()));
+        findViewDialog.setTextCode(ActionUtil.generateCode(viewParts, isViewHolder, isTarget26, isAddRootView, findViewDialog.getRootView(), isKotlin, isExtensions));
     }
 
     /**

@@ -172,6 +172,16 @@ public class FindViewByMeAction extends BaseGenerateAction {
         }
 
         @Override
+        public void onSwitchIsKotlin(boolean isKotlin) {
+
+        }
+
+        @Override
+        public void onSwitchExtensions(boolean isExtensions) {
+
+        }
+
+        @Override
         public void onSwitchIsTarget26(boolean target26) {
             isTarget26 = target26;
             generateCode();
